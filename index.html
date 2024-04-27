@@ -33,7 +33,9 @@
     const material = modelViewer.model.materials[0];
     material.getDoubleSided(true);
     // console.log(material);
-    const texture = await modelViewer.createVideoTexture("./assets/buck.webm");
+    //const texture = await modelViewer.createVideoTexture("./assets/buck.webm");
+    const texture = await modelViewer.createVideoTexture("./assets/SampleVideo_720x480_2mb.mp4");
+    
     texture.name = 'newTex'
     // console.log(texture);
 
