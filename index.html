@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebXR</title>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+          }
+        }
+      </script>
+<!-- Import the component -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+<!-- Use it like any other HTML element -->
+<model-viewer 
+    id="element"
+    style="width: 90vw; height: 90vh;"
+    src="./assets/plane.glb" 
+    ar 
+    ar-placement="wall"
+    camera-controls>
+</model-viewer>
+
+<script>
+ const modelViewer = document.getElementById('element');
+ 
+ modelViewer.addEventListener("load", async () => {
+    const material = modelViewer.model.materials[0];
+    material.getDoubleSided(true);
+    // console.log(material);
+    const texture = await modelViewer.createVideoTexture("./assets/buck.webm");
+    texture.name = 'newTex'
+    // console.log(texture);
+
+    //material.pbrMetallicRoughness.baseColorTexture = texture;
+    //material['normalTexture'].setTexture(texture);
+    material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
+    // material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI();
+
+});
+
+</script>
+    
+</body>
+</html>
